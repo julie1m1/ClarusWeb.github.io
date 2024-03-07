@@ -1,173 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clarus</title>
-    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Clarus Technology" />
+    <meta
+      property="og:description"
+      content="Clarus researches and develops highly scalable and resilient algorithms and software systems to build next-generation trusted computing platforms."
+    />
+    <meta property="og:image" content="thumbnail.jpg" />
+    <meta property="og:url" content="https://clarus.technology/" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <style>
-      .bg {
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  width: 200%;
-  height: 200vh;
-  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-  background-repeat: repeat;
-  animation: bg-animation .2s infinite;
-  opacity: .9;
-  visibility: visible;
-}
-@keyframes bg-animation {
-    0% { transform: translate(0,0) }
-    10% { transform: translate(-5%,-5%) }
-    20% { transform: translate(-10%,5%) }
-    30% { transform: translate(5%,-10%) }
-    40% { transform: translate(-5%,15%) }
-    50% { transform: translate(-10%,5%) }
-    60% { transform: translate(15%,0) }
-    70% { transform: translate(0,10%) }
-    80% { transform: translate(-15%,0) }
-    90% { transform: translate(10%,5%) }
-    100% { transform: translate(5%,0) }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box !important;
-  
-}
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-html, body {
-  height: 100%;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Clarus Technology</title>
+    <style></style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
 
-body {
-  background-color: #111111;
-  margin: 0 auto;
-  width: 600px;
-  overflow-x: hidden;
-  
-}
+    <header>
+      <h1><img src="logo.svg" alt="A descriptive text about the image" /></h1>
+    </header>
 
+    <div id="messenger"></div>
 
-.lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  margin: auto;
-  width: 90vw;
-}
+    <footer>
+      <p>
+        &copy; Copyright 2023-2024 Clarus Technology Ltd., a Hong Kong company
+      </p>
+      <p>All Rights Reserved.</p>
 
-.line {
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  top: 0;
-  left: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
+      <!-- 其他页脚内容，如社交媒体图标等 -->
+    </footer>
+    <script src="./app.js"></script>
+    <script>
+      var Messenger = function (el) {
+        "use strict";
+        var m = this;
 
-.line::after {
-  content: '';
-  display: block;
-  position: absolute;
-  height: 15vh;
-  width: 100%;
-  top: -50%;
-  left: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-  animation: drop 7s 0s infinite;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-}
+        m.init = function () {
+          m.codeletters =
+            "&#*+%?£@§$0123456⊕||∘⋅⋅, +<<,>>←$Pr{⋯}∼∼ϵEKVeryOψ∑∈タシんょンU|ψ&#*+%?£@§$0123456⊕||∘⋅⋅, +<<,>>←$Pr{⋯}∼∼ϵEKVeryOψ∑∈タシんょンU|ψ&#*+%?£@§$0123456⊕||∘⋅⋅, +<<,>>←$Pr{⋯}∼∼ϵEKVeryOψ∑∈タシんょンU|ψ";
+          m.message = 0;
+          m.current_length = 0;
+          m.fadeBuffer = false;
+          m.messages = [
+            "Clarus researches and develops highly scalable and resilient algorithms and software systems to build next-generation trusted computing platforms.",
+            "With key innovations in ZK Proof systems, Trust Execution Environment, parallel computing and hardware-based algorithm acceleration, Clarus solves critical challenges in a wide range of trusted computing use cases such as AI deep-fake prevention and privacy-preserving data marketplaces.",
+            "Clarus is in stealth mode, please stay tuned for more information.",
+          ];
 
-.line:nth-child(1) {
-  margin-left: -25%;
-}
+          setTimeout(m.animateAll, 10);
+        };
 
-.line:nth-child(1)::after {
-  animation-delay: 2s;
-}
+        m.generateRandomString = function (length) {
+          var random_text = "";
+          while (random_text.length < length) {
+            random_text += m.codeletters.charAt(
+              Math.floor(Math.random() * m.codeletters.length)
+            );
+          }
 
-.line:nth-child(3) {
-  margin-left: 25%;
-}
+          return random_text;
+        };
 
-.line:nth-child(3)::after {
-  animation-delay: 2.5s;
-}
+        m.animateAll = function () {
+          var totalLength = m.messages.reduce(
+            (total, message) => total + message.length,
+            0
+          );
+          if (m.current_length < totalLength) {
+            m.current_length += 500; // 每次增加 5 个字符
+            if (m.current_length > totalLength) {
+              m.current_length = totalLength;
+            }
 
-@keyframes drop {
-  0% {
-    top: -50%;
-  }
-  100% {
-    top: 110%;
-  }
-}
-.content{
-    color: #e3e3e3;
-font-size: 20px;
-font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-font-weight: 700;
-line-height: 24px;
-word-wrap: break-word
+            var message = "";
+            var currentIndex = 0;
+            for (var i = 0; i < m.messages.length; i++) {
+              var length = m.messages[i].length;
+              var randomString = m.generateRandomString(length);
+              message += randomString.substr(
+                0,
+                m.current_length - currentIndex
+              );
+              if (i < m.messages.length - 1) {
+                message += "\n\n";
+              }
+              currentIndex += length;
+            }
 
+            $(el).html(message);
 
-}
-.logo{
-    display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.copy{
-  text-align: center;
-      color: rgba(255, 255, 255, 0.70);
-      font-size: 14px;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 300;
-      line-height: 16.80px;
-      word-wrap: break-word;
-      margin-bottom: 20px;
-}
-    </style>
-</head>
-<body>
-    <br><br> <br><br> <br><br>
-        
-        <div class="logo"><img src="logo.svg" alt="Clarus"></div>
-     <br><br>
-       <div class="content">
+            setTimeout(m.animateAll, 70); // 时间间隔缩短为 10 毫秒
+          } else {
+            setTimeout(m.animateFadeBuffer, 50);
+          }
+        };
 
-<p>Clarus researches and develops highly scalable and resilient algorithms and software systems to build next-generation trusted computing platforms.</p><br><br>
-<p>With key innovations in ZK Proof systems, Trust Execution Environment, parallel computing and hardware-based algorithm acceleration, Clarus solves critical challenges in a wide range of trusted computing use cases such as AI deep-fake prevention and privacy-preserving data marketplaces.
-</p><br><br><p>Clarus is in stealth mode💻, please stay tuned for more information.</p>
-       </div> <br><br> <br><br> <br><br><br> <br><br><br> <br><br>
-       <div class="bg"></div>
-       <div class="lines">
-         <div class="line"></div>
-        
-         <div class="line" style="opacity: 0;"></div>
-         <div class="line"></div>
-       </div>
-    
-        <div class="copy">© Copyright 2019-2023 Clarus Technology Ltd., a Hong Kong company   <br>   All Rights Reserved.</div>
-    
-    
-    
-   
-</body>
+        m.animateFadeBuffer = function () {
+          if (m.fadeBuffer === false) {
+            m.fadeBuffer = [];
+            for (var i = 0; i < m.messages.join("\n\n").length; i++) {
+              m.fadeBuffer.push({
+                c: Math.floor(Math.random() * 25) + 1, // 随机循环次数范围缩小
+                l: m.messages.join("\n\n").charAt(i),
+              });
+            }
+          }
+
+          var do_cycles = false;
+          var message = "";
+
+          for (var i = 0; i < m.fadeBuffer.length; i++) {
+            var fader = m.fadeBuffer[i];
+            if (fader.c > 0) {
+              do_cycles = true;
+              fader.c--;
+              message += m.codeletters.charAt(
+                Math.floor(Math.random() * m.codeletters.length)
+              );
+            } else {
+              message += fader.l;
+            }
+          }
+
+          $(el).html(message.replace(/\n\n/g, "\n\n")); // 保留换行符
+
+          if (do_cycles === true) {
+            setTimeout(m.animateFadeBuffer, 20); // 时间间隔缩短为 30 毫秒
+          }
+        };
+
+        m.init();
+      };
+
+      console.clear();
+      var messenger = new Messenger($("#messenger"));
+    </script>
+  </body>
 </html>

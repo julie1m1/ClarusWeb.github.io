@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 0;
+    
+    
+    
+    color: white;
+    font-family: "Space Mono", monospace;
+        font-weight: 300;
+       
+
+html, body{
+    background-color: black;
+}
+
+canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100svh;
+    /* background-color: red; */
+}
+
+header{
+    position: relative;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    background: black;
+}
+
+header img{
+    height: 35px;
+}
+
+
+.hero {
+    position: relative;
+    height: calc(100svh - 60px);
+}
+
+.hero h1{
+    position: absolute;
+    bottom: 8rem;
+    left: 2rem;
+    right: 2rem
+}
+footer{
+    position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        right: 2rem
+    
+        font-size: .6rem;
+}
+p{
+color: #E8E8E8;
+}
+
+  #messenger {
+     
+      font-size: 2rem;
+      line-height: 1.5;
+      white-space: pre-line;
+    position: absolute;
+        bottom: 8rem;
+        left: 2rem;
+        right: 2rem
+  }
